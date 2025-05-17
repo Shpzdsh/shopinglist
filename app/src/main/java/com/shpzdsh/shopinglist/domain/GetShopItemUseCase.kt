@@ -1,8 +1,8 @@
 package com.shpzdsh.shopinglist.domain
 
-class GetShopItemUseCase {
+class GetShopItemUseCase(private val shopListRepository: ShopListRepository) {
 
     fun getShopItem(shooItemId: Int): ShopItem {
-        TODO()
+        return shopListRepository.getShopItem(shooItemId)
     }
 }
