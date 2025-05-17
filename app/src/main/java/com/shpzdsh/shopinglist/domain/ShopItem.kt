@@ -2,7 +2,7 @@ package com.shpzdsh.shopinglist.domain
 
 data class ShopItem(
     val name: String,
-    val count: Double,
+    val count: Int,
     val enabled: Boolean,
     var id: Int = UNDEFINED_ID
 ) {
