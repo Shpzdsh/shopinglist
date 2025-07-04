@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/ll_shop_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_shop_list"
         android:layout_width="0dp"
@@ -32,12 +21,12 @@
         android:id="@+id/button_and_shop_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_constraintBottom_toBottomOf="parent"
-        android:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:contentDescription="@string/add_new_item"
+        android:contentDescription="@string/add_shop_item_content_description"
         android:focusable="true"
-        android:srcCompat="@drawable/ic_add" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>
