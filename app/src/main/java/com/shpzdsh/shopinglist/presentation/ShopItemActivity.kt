@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.shpzdsh.shopinglist.R
 import com.shpzdsh.shopinglist.domain.ShopItem
 
-class ShopItemActivity : AppCompatActivity() {
+class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnEditedFinishListener {
 
     private var screenMode = MODE_UNKNOWN
     private var shopItemId = ShopItem.UNDEFINED_ID
@@ -19,6 +19,10 @@ class ShopItemActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             launchRightMode()
         }
+    }
+
+    override fun onEditedFinish() {
+        finish()
     }
 
     private fun launchRightMode() {

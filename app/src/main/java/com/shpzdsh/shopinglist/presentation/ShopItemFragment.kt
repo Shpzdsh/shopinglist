@@ -1,5 +1,6 @@
 package com.shpzdsh.shopinglist.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -18,6 +19,7 @@ import com.shpzdsh.shopinglist.domain.ShopItem
 class ShopItemFragment : Fragment() {
 
     private lateinit var viewModel: ShopItemViewModel
+    private lateinit var onEditedFinishListener: OnEditedFinishListener
 
     private lateinit var tilName: TextInputLayout
     private lateinit var tilCount: TextInputLayout
@@ -27,6 +29,15 @@ class ShopItemFragment : Fragment() {
 
     private var screenMode: String = MODE_UNKNOWN
     private var shopItemId: Int = ShopItem.UNDEFINED_ID
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnEditedFinishListener) {
+            onEditedFinishListener = context
+        } else {
+            throw RuntimeException("Activity must implement OnEditedFinishListener")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("ShopItemFragment", "onCreate")
@@ -69,7 +80,7 @@ class ShopItemFragment : Fragment() {
             tilName.error = message
         }
         viewModel.shouldCloseScreen.observe(viewLifecycleOwner) {
-            activity?.onBackPressedDispatcher?.onBackPressed()
+            onEditedFinishListener.onEditedFinish()
         }
     }
 
@@ -144,6 +155,10 @@ class ShopItemFragment : Fragment() {
         etName = view.findViewById(R.id.et_name)
         etCount = view.findViewById(R.id.et_count)
         saveButton = view.findViewById(R.id.save_button)
+    }
+
+    interface OnEditedFinishListener {
+        fun onEditedFinish()
     }
 
     companion object {
